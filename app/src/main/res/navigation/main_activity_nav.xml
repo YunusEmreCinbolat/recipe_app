@@ -24,12 +24,20 @@
         android:id="@+id/yemekDetayFragment"
         android:name="com.example.recipe_app.ui.fragment.YemekDetayFragment"
         android:label="fragment_yemek_detay"
-        tools:layout="@layout/fragment_yemek_detay" />
+        tools:layout="@layout/fragment_yemek_detay" >
+        <argument
+            android:name="yemek"
+            app:argType="com.example.recipe_app.data.entity.Yemek" />
+    </fragment>
     <fragment
         android:id="@+id/yemekGuncelleFragment"
         android:name="com.example.recipe_app.ui.fragment.YemekGuncelleFragment"
         android:label="fragment_yemek_guncelle"
-        tools:layout="@layout/fragment_yemek_guncelle" />
+        tools:layout="@layout/fragment_yemek_guncelle" >
+        <argument
+            android:name="yemek"
+            app:argType="com.example.recipe_app.data.entity.Yemek" />
+    </fragment>
     <fragment
         android:id="@+id/yemekKayitFragment"
         android:name="com.example.recipe_app.ui.fragment.YemekKayitFragment"
