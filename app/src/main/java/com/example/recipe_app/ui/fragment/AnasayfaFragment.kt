@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuProvider
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.Navigation
@@ -16,7 +17,7 @@ import com.example.recipe_app.R
 import com.example.recipe_app.databinding.FragmentAnasayfaBinding
 
 
-class AnasayfaFragment : Fragment() {
+class AnasayfaFragment : Fragment(),SearchView.OnQueryTextListener {
     private lateinit var binding: FragmentAnasayfaBinding
 
     override fun onCreateView(
@@ -32,6 +33,9 @@ class AnasayfaFragment : Fragment() {
         requireActivity().addMenuProvider(object :MenuProvider{
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.toolbar_menu,menu)
+                val item=menu.findItem(R.id.ara_yemek)
+                val searchView=item.actionView as SearchView
+                searchView.setOnQueryTextListener(this@AnasayfaFragment)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -42,4 +46,16 @@ class AnasayfaFragment : Fragment() {
         return binding.root
     }
 
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        ara(query.toString())
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        ara(newText.toString())
+        return true
+    }
+    fun ara(arananYemek:String){
+
+    }
 }
