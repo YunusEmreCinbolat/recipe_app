@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity_nav"
+    app:startDestination="@id/anasayfaFragment">
+
+    <fragment
+        android:id="@+id/anasayfaFragment"
+        android:name="com.example.recipe_app.ui.fragment.AnasayfaFragment"
+        android:label="fragment_anasayfa"
+        tools:layout="@layout/fragment_anasayfa" >
+        <action
+            android:id="@+id/yemekguncelleGecis"
+            app:destination="@id/yemekGuncelleFragment" />
+        <action
+            android:id="@+id/yemekkayitGecis"
+            app:destination="@id/yemekKayitFragment" />
+        <action
+            android:id="@+id/yemekdetayGecis"
+            app:destination="@id/yemekDetayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/yemekDetayFragment"
+        android:name="com.example.recipe_app.ui.fragment.YemekDetayFragment"
+        android:label="fragment_yemek_detay"
+        tools:layout="@layout/fragment_yemek_detay" />
+    <fragment
+        android:id="@+id/yemekGuncelleFragment"
+        android:name="com.example.recipe_app.ui.fragment.YemekGuncelleFragment"
+        android:label="fragment_yemek_guncelle"
+        tools:layout="@layout/fragment_yemek_guncelle" />
+    <fragment
+        android:id="@+id/yemekKayitFragment"
+        android:name="com.example.recipe_app.ui.fragment.YemekKayitFragment"
+        android:label="fragment_yemek_kayit"
+        tools:layout="@layout/fragment_yemek_kayit" />
+</navigation>
