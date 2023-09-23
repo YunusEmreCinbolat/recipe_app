@@ -7,6 +7,10 @@ android {
     namespace = "com.example.recipe_app"
     compileSdk = 34
 
+    buildFeatures {
+        viewBinding=true
+    }
+
     defaultConfig {
         applicationId = "com.example.recipe_app"
         minSdk = 24
