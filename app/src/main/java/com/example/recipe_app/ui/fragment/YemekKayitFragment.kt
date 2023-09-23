@@ -18,7 +18,14 @@ class YemekKayitFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding= FragmentYemekKayitBinding.inflate(inflater,container,false)
+        binding.toolbarKayit.title="Yemek kayıt ekranı"
+        binding.buttonYemekKaydet.setOnClickListener {
+            val yemekAd=binding.editTextyemekAdi.text.trim().toString()
+            val yemekTarif=binding.editTextTextTarif.text.trim().toString()
+            kayit(yemekAd,yemekTarif)
+        }
         return binding.root
     }
+    fun kayit(yemekAd:String,yemekTanim:String){}
 
 }
