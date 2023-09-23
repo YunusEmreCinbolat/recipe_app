@@ -18,6 +18,11 @@ class YemekGuncelleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding= FragmentYemekGuncelleBinding.inflate(inflater,container,false)
+        binding.toolbarKayit.title="Yemek Kayıt Ekranı"
+        binding.buttonYemekGuncelle.setOnClickListener {
+            val yemekAd=binding.editTextyemekAdi.text.trim().toString()
+            val yemekTarif=binding.editTextTextTarif.text.trim().toString()
+        }
         return binding.root
     }
 
