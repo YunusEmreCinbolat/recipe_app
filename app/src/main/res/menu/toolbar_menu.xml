@@ -8,5 +8,6 @@
         android:layout_height="wrap_content"
         android:icon="@drawable/yemekara"
         android:title="Ara"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="always|collapseActionView" />
 </menu>
