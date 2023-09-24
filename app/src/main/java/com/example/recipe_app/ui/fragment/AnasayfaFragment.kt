@@ -74,4 +74,8 @@ class AnasayfaFragment : Fragment(),SearchView.OnQueryTextListener {
     fun ara(arananYemek:String){
 
     }
+
+    override fun onResume() {
+        super.onResume()
+    }
 }
