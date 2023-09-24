@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipe_app.data.entity.Yemek
 import com.example.recipe_app.databinding.CardTasarimBinding
+import com.example.recipe_app.ui.fragment.AnasayfaFragmentDirections
 
 class YemeklerAdapter(var mContext: Context,val yemekListesi: List<Yemek>):RecyclerView.Adapter<YemeklerAdapter.CardTasarimTutucu>() {
     inner class CardTasarimTutucu(binding: CardTasarimBinding):RecyclerView.ViewHolder(binding.root){
@@ -55,9 +57,13 @@ class YemeklerAdapter(var mContext: Context,val yemekListesi: List<Yemek>):Recyc
 
         })
         holder.binding.cv.setOnClickListener {
-            Toast.makeText(mContext,"${yemek.name} kısa basıldı",Toast.LENGTH_LONG).show()
+           val gecis = AnasayfaFragmentDirections.yemekdetayGecis(yemek)
+            Navigation.findNavController(it).navigate(gecis)
         }
-        holder.binding.imageViewGuncelle
+        holder.binding.imageViewGuncelle.setOnClickListener {
+            val gecis = AnasayfaFragmentDirections.yemekguncelleGecis(yemek)
+            Navigation.findNavController(it).navigate(gecis)
+        }
 
     }
 }
