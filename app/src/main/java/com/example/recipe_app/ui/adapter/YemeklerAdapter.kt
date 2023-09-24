@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipe_app.data.entity.Yemek
 import com.example.recipe_app.databinding.CardTasarimBinding
@@ -31,13 +32,30 @@ class YemeklerAdapter(var mContext: Context,val yemekListesi: List<Yemek>):Recyc
         holder.binding.textViewListyemekAd.text=yemek.name
         holder.binding.cv.setOnLongClickListener (object : View.OnLongClickListener{
             override fun onLongClick(v: View?): Boolean {
-               Toast.makeText(mContext,"${yemek.name } uzun basildi",Toast.LENGTH_LONG).show()
+                val alert = AlertDialog.Builder(mContext)
+                alert.setTitle("Silme")
+                alert.setMessage("${yemek.name} silinsin mi ?")
+
+                alert.setPositiveButton("Yes") {dialog, which ->
+
+                    //OnClick Listener
+                    Toast.makeText(mContext,"${yemek.name} Silindi",Toast.LENGTH_LONG).show()
+                }
+                alert.setNegativeButton("No") {dialog, which ->
+
+                    //OnClick Listener
+                    Toast.makeText(mContext,"${yemek.name} Silinmedi",Toast.LENGTH_LONG).show()
+
+                }
+
+                alert.show()
+
                 return true
             }
 
         })
         holder.binding.cv.setOnClickListener {
-
+            Toast.makeText(mContext,"${yemek.name} kısa basıldı",Toast.LENGTH_LONG).show()
         }
         holder.binding.imageViewGuncelle
 
