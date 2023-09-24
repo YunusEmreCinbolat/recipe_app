@@ -22,7 +22,9 @@ import com.example.recipe_app.ui.adapter.YemeklerAdapter
 import com.example.recipe_app.util.gecisYap
 import com.example.recipe_app.viewmodel.AnasayfaViewModel
 import com.example.recipe_app.viewmodel.YemekKayitViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 
 class AnasayfaFragment : Fragment(),SearchView.OnQueryTextListener {
     private lateinit var binding: FragmentAnasayfaBinding

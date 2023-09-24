@@ -5,9 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.recipe_app.data.entity.Yemek
 import com.example.recipe_app.data.repo.YemeklerDaRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class AnasayfaViewModel:ViewModel() {
-    val yemekrepo= YemeklerDaRepository()
+@HiltViewModel
+class AnasayfaViewModel @Inject constructor(var yemekrepo:YemeklerDaRepository):ViewModel() {
     var yemeklistesi=MutableLiveData<List<Yemek>>()
     init {
         tumYemek()

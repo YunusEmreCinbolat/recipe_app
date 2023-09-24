@@ -11,7 +11,9 @@ import com.example.recipe_app.R
 import com.example.recipe_app.databinding.FragmentYemekGuncelleBinding
 import com.example.recipe_app.viewmodel.YemekGuncelleViewModel
 import com.example.recipe_app.viewmodel.YemekKayitViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 
 class YemekGuncelleFragment : Fragment() {
     private lateinit var binding: FragmentYemekGuncelleBinding

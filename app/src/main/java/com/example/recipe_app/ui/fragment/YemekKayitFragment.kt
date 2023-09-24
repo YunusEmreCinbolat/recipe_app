@@ -10,8 +10,9 @@ import com.example.recipe_app.R
 import com.example.recipe_app.databinding.FragmentYemekKayitBinding
 import com.example.recipe_app.viewmodel.YemekGuncelleViewModel
 import com.example.recipe_app.viewmodel.YemekKayitViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class YemekKayitFragment : Fragment() {
     private lateinit var binding: FragmentYemekKayitBinding
     private lateinit var viewModel: YemekKayitViewModel
