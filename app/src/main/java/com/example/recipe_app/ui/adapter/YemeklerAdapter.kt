@@ -2,6 +2,7 @@ package com.example.recipe_app.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipe_app.data.entity.Yemek
@@ -27,8 +28,14 @@ class YemeklerAdapter(var mContext: Context,val yemekListesi: List<Yemek>):Recyc
     override fun onBindViewHolder(holder: CardTasarimTutucu, position: Int) {
         val yemek=yemekListesi.get(position)
         holder.binding.textViewListyemekAd.text=yemek.name
-        holder.binding.cv.setOnClickListener {
+        holder.binding.cv.setOnLongClickListener (object : View.OnLongClickListener{
+            override fun onLongClick(v: View?): Boolean {
+                TODO("Not yet implemented")
+            }
 
+        })
+        holder.binding.cv.setOnClickListener {
+            
         }
         holder.binding.imageViewMore
 
