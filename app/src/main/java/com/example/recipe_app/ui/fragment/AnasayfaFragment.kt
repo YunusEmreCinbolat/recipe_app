@@ -25,7 +25,6 @@ import com.example.recipe_app.viewmodel.YemekKayitViewModel
 
 class AnasayfaFragment : Fragment(),SearchView.OnQueryTextListener {
     private lateinit var binding: FragmentAnasayfaBinding
-    private lateinit var yemekListesi:ArrayList<Yemek>
     private lateinit var viewModel: AnasayfaViewModel
 
     override fun onCreateView(
@@ -36,17 +35,12 @@ class AnasayfaFragment : Fragment(),SearchView.OnQueryTextListener {
         binding.toolbarAnasayfa.title="Yemek Listesi"
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbarAnasayfa)
         binding.rv.layoutManager=LinearLayoutManager(requireContext())
-        yemekListesi=ArrayList()
-        val y1=Yemek(1,"Kruvasan","Çikolata")
-        val y2=Yemek(2,"Kruvasa","Çikolata")
-        val y3=Yemek(3,"Kruvan","Çikolata")
-        val y4=Yemek(4,"Kasan","Çikolata")
-        yemekListesi.add(y1)
-        yemekListesi.add(y2)
-        yemekListesi.add(y3)
-        yemekListesi.add(y4)
-        val adapter= YemeklerAdapter(requireContext(),yemekListesi,viewModel)
-        binding.rv.adapter=adapter
+        viewModel.yemeklistesi.observe(viewLifecycleOwner){
+            val adapter= YemeklerAdapter(requireContext(),it,viewModel)
+            binding.rv.adapter=adapter
+        }
+
+
         binding.fabEkle.setOnClickListener{
             Navigation.findNavController(it).navigate(R.id.yemekkayitGecis)
         }
@@ -79,6 +73,7 @@ class AnasayfaFragment : Fragment(),SearchView.OnQueryTextListener {
 
     override fun onResume() {
         super.onResume()
+        viewModel.tumYemek()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
