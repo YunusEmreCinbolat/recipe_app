@@ -2,9 +2,16 @@ package com.example.recipe_app.data.repo
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.example.recipe_app.data.entity.CRUDsonuc
 import com.example.recipe_app.data.entity.Yemek
+import com.example.recipe_app.data.entity.YemekCevap
+import com.example.recipe_app.retrofit.YemeklerDao
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class YemeklerDaRepository {
+class YemeklerDaRepository(var yemekDao: YemeklerDao) {
+
     var yemeklistesi:MutableLiveData<List<Yemek>>
     init {
         yemeklistesi= MutableLiveData()
@@ -27,15 +34,15 @@ class YemeklerDaRepository {
 
     }
     fun tumYemek(){
-        yemekListesi=ArrayList()
-        val y1= Yemek(1,"Kruvasan","Çikolata")
-        val y2= Yemek(2,"Kruvasa","Çikolata")
-        val y3= Yemek(3,"Kruvan","Çikolata")
-        val y4= Yemek(4,"Kasan","Çikolata")
-        yemekListesi.add(y1)
-        yemekListesi.add(y2)
-        yemekListesi.add(y3)
-        yemekListesi.add(y4)
-        yemeklistesi.value=yemekListesi
+        yemekDao.tumYemek().enqueue(object :Callback<YemekCevap>{
+            override fun onResponse(call: Call<YemekCevap>?, response: Response<YemekCevap>) {
+                val liste=response.body()?.yemekler
+                yemeklistesi.value=liste!!
+            }
+
+            override fun onFailure(call: Call<YemekCevap>, t: Throwable) {
+            }
+
+        })
     }
 }
