@@ -27,6 +27,7 @@ class AnasayfaFragment : Fragment(),SearchView.OnQueryTextListener {
         binding= FragmentAnasayfaBinding.inflate(inflater,container,false)
         binding.toolbarAnasayfa.title="Yemek Listesi"
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbarAnasayfa)
+
         binding.fabEkle.setOnClickListener{
             Navigation.findNavController(it).navigate(R.id.yemekkayitGecis)
         }
