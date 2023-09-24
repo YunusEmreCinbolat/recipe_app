@@ -67,17 +67,15 @@ class AnasayfaFragment : Fragment(),SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        ara(query.toString())
+      viewModel.yemekAra(query.toString())
         return true
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        ara(newText.toString())
+        viewModel.yemekAra(newText.toString())
         return true
     }
-    fun ara(arananYemek:String){
 
-    }
 
     override fun onResume() {
         super.onResume()

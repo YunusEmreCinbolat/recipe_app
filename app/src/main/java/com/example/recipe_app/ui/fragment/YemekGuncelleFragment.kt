@@ -40,7 +40,7 @@ class YemekGuncelleFragment : Fragment() {
         viewModel=tempView
     }
     fun guncelle(yemekId:Int, yemekAd:String,yemekTanim:String){
-
+        viewModel.yemekGuncelle(yemekId,yemekAd,yemekTanim)
     }
 
 }

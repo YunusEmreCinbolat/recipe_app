@@ -36,6 +36,8 @@ class YemekKayitFragment : Fragment() {
         val tempView:YemekKayitViewModel by viewModels ()
         viewModel=tempView
     }
-    fun kayit(yemekAd:String,yemekTanim:String){}
+    fun kayit(yemekAd:String,yemekTanim:String){
+        viewModel.yemekKayit(yemekAd,yemekTanim)
+    }
 
 }
