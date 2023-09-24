@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.recipe_app.R
 import com.example.recipe_app.databinding.FragmentYemekGuncelleBinding
 import com.example.recipe_app.viewmodel.YemekGuncelleViewModel
+import com.example.recipe_app.viewmodel.YemekKayitViewModel
 
 
 class YemekGuncelleFragment : Fragment() {
@@ -31,6 +33,11 @@ class YemekGuncelleFragment : Fragment() {
             guncelle(gelenYemek.id,yemekAd,yemekTarif)
         }
         return binding.root
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempView: YemekGuncelleViewModel by viewModels ()
+        viewModel=tempView
     }
     fun guncelle(yemekId:Int, yemekAd:String,yemekTanim:String){
 

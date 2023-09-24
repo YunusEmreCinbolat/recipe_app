@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.recipe_app.R
 import com.example.recipe_app.databinding.FragmentYemekDetayBinding
 import com.example.recipe_app.viewmodel.YemekDetayViewModel
+import com.example.recipe_app.viewmodel.YemekKayitViewModel
 
 
 class YemekDetayFragment : Fragment() {
@@ -27,5 +29,9 @@ class YemekDetayFragment : Fragment() {
         binding.textViewYemektanim.setText(gelenYemek.description)
         return binding.root
     }
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempView: YemekDetayViewModel by viewModels ()
+        viewModel=tempView
+    }
 }

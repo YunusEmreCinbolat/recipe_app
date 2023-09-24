@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.example.recipe_app.R
 import com.example.recipe_app.databinding.FragmentYemekKayitBinding
 import com.example.recipe_app.viewmodel.YemekGuncelleViewModel
@@ -28,6 +29,12 @@ class YemekKayitFragment : Fragment() {
             kayit(yemekAd,yemekTarif)
         }
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempView:YemekKayitViewModel by viewModels ()
+        viewModel=tempView
     }
     fun kayit(yemekAd:String,yemekTanim:String){}
 

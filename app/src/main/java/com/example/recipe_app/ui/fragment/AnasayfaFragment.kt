@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +20,7 @@ import com.example.recipe_app.data.entity.Yemek
 import com.example.recipe_app.databinding.FragmentAnasayfaBinding
 import com.example.recipe_app.ui.adapter.YemeklerAdapter
 import com.example.recipe_app.viewmodel.AnasayfaViewModel
+import com.example.recipe_app.viewmodel.YemekKayitViewModel
 
 
 class AnasayfaFragment : Fragment(),SearchView.OnQueryTextListener {
@@ -79,5 +81,10 @@ class AnasayfaFragment : Fragment(),SearchView.OnQueryTextListener {
 
     override fun onResume() {
         super.onResume()
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempView: AnasayfaViewModel by viewModels ()
+        viewModel=tempView
     }
 }
