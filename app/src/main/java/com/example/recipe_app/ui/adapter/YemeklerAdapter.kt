@@ -35,7 +35,7 @@ class YemeklerAdapter(var mContext: Context,val yemekListesi: List<Yemek>):Recyc
 
         })
         holder.binding.cv.setOnClickListener {
-            
+
         }
         holder.binding.imageViewMore
 
