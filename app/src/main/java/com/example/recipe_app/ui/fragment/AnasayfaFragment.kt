@@ -18,11 +18,13 @@ import com.example.recipe_app.R
 import com.example.recipe_app.data.entity.Yemek
 import com.example.recipe_app.databinding.FragmentAnasayfaBinding
 import com.example.recipe_app.ui.adapter.YemeklerAdapter
+import com.example.recipe_app.viewmodel.AnasayfaViewModel
 
 
 class AnasayfaFragment : Fragment(),SearchView.OnQueryTextListener {
     private lateinit var binding: FragmentAnasayfaBinding
     private lateinit var yemekListesi:ArrayList<Yemek>
+    private lateinit var viewModel: AnasayfaViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

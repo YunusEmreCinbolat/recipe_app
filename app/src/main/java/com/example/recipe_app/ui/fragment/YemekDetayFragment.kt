@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.example.recipe_app.R
 import com.example.recipe_app.databinding.FragmentYemekDetayBinding
+import com.example.recipe_app.viewmodel.YemekDetayViewModel
 
 
 class YemekDetayFragment : Fragment() {
     private lateinit var binding: FragmentYemekDetayBinding
+    private lateinit var viewModel: YemekDetayViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

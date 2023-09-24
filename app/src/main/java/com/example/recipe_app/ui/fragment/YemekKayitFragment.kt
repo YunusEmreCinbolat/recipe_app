@@ -7,10 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.recipe_app.R
 import com.example.recipe_app.databinding.FragmentYemekKayitBinding
+import com.example.recipe_app.viewmodel.YemekGuncelleViewModel
+import com.example.recipe_app.viewmodel.YemekKayitViewModel
 
 
 class YemekKayitFragment : Fragment() {
     private lateinit var binding: FragmentYemekKayitBinding
+    private lateinit var viewModel: YemekKayitViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

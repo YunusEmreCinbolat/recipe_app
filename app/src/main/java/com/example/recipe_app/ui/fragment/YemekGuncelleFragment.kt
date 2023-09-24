@@ -8,11 +8,12 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.example.recipe_app.R
 import com.example.recipe_app.databinding.FragmentYemekGuncelleBinding
+import com.example.recipe_app.viewmodel.YemekGuncelleViewModel
 
 
 class YemekGuncelleFragment : Fragment() {
     private lateinit var binding: FragmentYemekGuncelleBinding
-
+    private lateinit var viewModel: YemekGuncelleViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
