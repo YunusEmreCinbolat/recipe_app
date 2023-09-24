@@ -45,7 +45,7 @@ class AnasayfaFragment : Fragment(),SearchView.OnQueryTextListener {
         yemekListesi.add(y2)
         yemekListesi.add(y3)
         yemekListesi.add(y4)
-        val adapter= YemeklerAdapter(requireContext(),yemekListesi)
+        val adapter= YemeklerAdapter(requireContext(),yemekListesi,viewModel)
         binding.rv.adapter=adapter
         binding.fabEkle.setOnClickListener{
             Navigation.findNavController(it).navigate(R.id.yemekkayitGecis)

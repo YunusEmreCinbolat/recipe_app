@@ -12,4 +12,8 @@ class YemeklerDaRepository {
     fun yemekAra(arananYemek:String){
         Log.e("yemek ara",arananYemek)
     }
+    fun yemekSil(yemekId: Int,yemekAd: String,yemekTanim: String){
+        Log.e("Sil","${yemekId} ${yemekAd} -${yemekTanim}")
+
+    }
 }

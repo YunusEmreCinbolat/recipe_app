@@ -11,8 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.recipe_app.data.entity.Yemek
 import com.example.recipe_app.databinding.CardTasarimBinding
 import com.example.recipe_app.ui.fragment.AnasayfaFragmentDirections
+import com.example.recipe_app.viewmodel.AnasayfaViewModel
 
-class YemeklerAdapter(var mContext: Context,val yemekListesi: List<Yemek>):RecyclerView.Adapter<YemeklerAdapter.CardTasarimTutucu>() {
+class YemeklerAdapter(var mContext: Context,
+                      val yemekListesi: List<Yemek>,
+                    val viewModel: AnasayfaViewModel)
+    :RecyclerView.Adapter<YemeklerAdapter.CardTasarimTutucu>() {
     inner class CardTasarimTutucu(binding: CardTasarimBinding):RecyclerView.ViewHolder(binding.root){
         var binding:CardTasarimBinding
         init {
@@ -41,7 +45,7 @@ class YemeklerAdapter(var mContext: Context,val yemekListesi: List<Yemek>):Recyc
                 alert.setPositiveButton("Yes") {dialog, which ->
 
                     //OnClick Listener
-                    Toast.makeText(mContext,"${yemek.name} Silindi",Toast.LENGTH_LONG).show()
+                    viewModel.yemekSil(yemek.id,yemek.name,yemek.description)
                 }
                 alert.setNegativeButton("No") {dialog, which ->
 
