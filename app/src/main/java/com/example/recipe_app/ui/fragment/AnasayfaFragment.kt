@@ -19,6 +19,7 @@ import com.example.recipe_app.R
 import com.example.recipe_app.data.entity.Yemek
 import com.example.recipe_app.databinding.FragmentAnasayfaBinding
 import com.example.recipe_app.ui.adapter.YemeklerAdapter
+import com.example.recipe_app.util.gecisYap
 import com.example.recipe_app.viewmodel.AnasayfaViewModel
 import com.example.recipe_app.viewmodel.YemekKayitViewModel
 
@@ -42,7 +43,7 @@ class AnasayfaFragment : Fragment(),SearchView.OnQueryTextListener {
 
 
         binding.fabEkle.setOnClickListener{
-            Navigation.findNavController(it).navigate(R.id.yemekkayitGecis)
+            Navigation.gecisYap(R.id.yemekkayitGecis,it)
         }
         requireActivity().addMenuProvider(object :MenuProvider{
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
