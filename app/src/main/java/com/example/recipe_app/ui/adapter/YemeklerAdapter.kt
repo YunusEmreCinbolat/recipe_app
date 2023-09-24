@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipe_app.data.entity.Yemek
 import com.example.recipe_app.databinding.CardTasarimBinding
@@ -30,7 +31,8 @@ class YemeklerAdapter(var mContext: Context,val yemekListesi: List<Yemek>):Recyc
         holder.binding.textViewListyemekAd.text=yemek.name
         holder.binding.cv.setOnLongClickListener (object : View.OnLongClickListener{
             override fun onLongClick(v: View?): Boolean {
-                TODO("Not yet implemented")
+               Toast.makeText(mContext,"${yemek.name } uzun basildi",Toast.LENGTH_LONG).show()
+                return true
             }
 
         })
