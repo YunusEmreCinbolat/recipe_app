@@ -13,12 +13,16 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuProvider
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recipe_app.R
+import com.example.recipe_app.data.entity.Yemek
 import com.example.recipe_app.databinding.FragmentAnasayfaBinding
+import com.example.recipe_app.ui.adapter.YemeklerAdapter
 
 
 class AnasayfaFragment : Fragment(),SearchView.OnQueryTextListener {
     private lateinit var binding: FragmentAnasayfaBinding
+    private lateinit var yemekListesi:ArrayList<Yemek>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +31,18 @@ class AnasayfaFragment : Fragment(),SearchView.OnQueryTextListener {
         binding= FragmentAnasayfaBinding.inflate(inflater,container,false)
         binding.toolbarAnasayfa.title="Yemek Listesi"
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbarAnasayfa)
-
+        binding.rv.layoutManager=LinearLayoutManager(requireContext())
+        yemekListesi=ArrayList()
+        val y1=Yemek(1,"Kruvasan","Çikolata")
+        val y2=Yemek(2,"Kruvasa","Çikolata")
+        val y3=Yemek(3,"Kruvan","Çikolata")
+        val y4=Yemek(4,"Kasan","Çikolata")
+        yemekListesi.add(y1)
+        yemekListesi.add(y2)
+        yemekListesi.add(y3)
+        yemekListesi.add(y4)
+        val adapter= YemeklerAdapter(requireContext(),yemekListesi)
+        binding.rv.adapter=adapter
         binding.fabEkle.setOnClickListener{
             Navigation.findNavController(it).navigate(R.id.yemekkayitGecis)
         }
