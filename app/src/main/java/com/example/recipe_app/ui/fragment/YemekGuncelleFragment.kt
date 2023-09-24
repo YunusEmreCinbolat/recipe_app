@@ -20,7 +20,7 @@ class YemekGuncelleFragment : Fragment() {
     ): View? {
         binding= FragmentYemekGuncelleBinding.inflate(inflater,container,false)
         binding.toolbarKayit.title="Yemek Kayıt Ekranı"
-        val bundle:YemekDetayFragmentArgs by navArgs()
+        val bundle:YemekGuncelleFragmentArgs by navArgs()
         val gelenYemek=bundle.yemek
         binding.editTextyemekAdi.setText(gelenYemek.name)
         binding.editTextTextTarif.setText(gelenYemek.description)
