@@ -16,7 +16,6 @@ class YemeklerDaRepository(var yemekDao: YemeklerDao) {
     init {
         yemeklistesi= MutableLiveData()
     }
-    private lateinit var yemekListesi:ArrayList<Yemek>
     fun yemekGetir():MutableLiveData<List<Yemek>>{
         return yemeklistesi
     }
@@ -36,11 +35,14 @@ class YemeklerDaRepository(var yemekDao: YemeklerDao) {
     fun tumYemek(){
         yemekDao.tumYemek().enqueue(object :Callback<YemekCevap>{
             override fun onResponse(call: Call<YemekCevap>?, response: Response<YemekCevap>) {
-                val liste=response.body()?.yemekler
-                yemeklistesi.value=liste!!
+                val liste= response.body()!!.yemekler
+
+                    yemeklistesi.value=liste
+
             }
 
             override fun onFailure(call: Call<YemekCevap>, t: Throwable) {
+                Log.e("YemeklerDaRepository", "İstek başarısız. Hata: ${t.message}")
             }
 
         })
