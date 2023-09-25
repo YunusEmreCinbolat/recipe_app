@@ -2,6 +2,7 @@ package com.example.recipe_app.data.repo
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.example.recipe_app.data.entity.CRUDsonuc
 import com.example.recipe_app.data.entity.Yemek
 import com.example.recipe_app.data.entity.YemekCevap
 import com.example.recipe_app.retrofit.YemeklerDao
@@ -18,22 +19,46 @@ class YemeklerDaRepository(var yemekDao: YemeklerDao) {
     fun yemekGetir():MutableLiveData<List<Yemek>>{
         return yemeklistesi
     }
-    fun yemekKayit(yemekAd:String,yemekTanim:String){
-        Log.e("qewwqwe",yemekAd)
+    fun yemekKayit(Value:String, Description:String){
+        yemekDao.yemekEkle(Value,Description).enqueue(object :Callback<CRUDsonuc>{
+            override fun onResponse(call: Call<CRUDsonuc>, response: Response<CRUDsonuc>) {
+                val message=response.body()?.message
+                Log.e("EKLE",message.toString())
+                tumYemek()
+            }
+
+            override fun onFailure(call: Call<CRUDsonuc>, t: Throwable) {
+            }
+
+        })
     }
-    fun yemekGuncelle(yemekId:Int, yemekAd:String,yemekTanim:String){
-        Log.e("guncel",yemekAd)
+    fun yemekGuncelle(id:Int, name:String, description:String){
+        yemekDao.yemekGuncelle(id,name,description).enqueue(object :Callback<CRUDsonuc>{
+            override fun onResponse(call: Call<CRUDsonuc>, response: Response<CRUDsonuc>) {
+                val message=response.body()?.message
+                Log.e("Guncelle",message.toString())
+            }
+
+            override fun onFailure(call: Call<CRUDsonuc>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
-    fun yemekAra(arananYemek:String){
-       yemekDao.yemekAra(arananYemek).enqueue(object :Callback<YemekCevap>{
-           override fun onResponse(call: Call<YemekCevap>, response: Response<YemekCevap>) {
-               val liste=response.body()!!.recipes
+    fun yemekAra(name:String){
+       yemekDao.yemekAra(name).enqueue(object :Callback<YemekCevap>{
+           override fun onResponse(call: Call<YemekCevap>?, response: Response<YemekCevap>) {
+               val liste=response.body()?.recipes
+               val message=response.body()?.message
+               Log.e("Ara",message.toString())
                if (liste!=null)
-                    yemeklistesi.value=liste
+                  yemeklistesi.value=liste!!
            }
 
            override fun onFailure(call: Call<YemekCevap>, t: Throwable) {
+               TODO("Not yet implemented")
            }
+
 
        })
     }
