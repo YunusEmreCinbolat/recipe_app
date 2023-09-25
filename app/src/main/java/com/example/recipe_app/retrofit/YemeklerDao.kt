@@ -1,5 +1,6 @@
 package com.example.recipe_app.retrofit
 
+import com.example.recipe_app.data.entity.CRUDsonuc
 import com.example.recipe_app.data.entity.YemekCevap
 import dagger.Provides
 import retrofit2.Call
@@ -19,4 +20,10 @@ interface YemeklerDao {
     @POST("recipes/search_recipe.php")
     @FormUrlEncoded
     fun yemekAra(@Field("name") name: String): Call<YemekCevap>
+
+    @POST("recipes/add_recipe.php")
+    @FormUrlEncoded
+    fun yemekEkle(@Field("name") name: String, @Field("description") description: String): Call<CRUDsonuc>
+
+
 }

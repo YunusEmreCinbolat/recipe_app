@@ -18,8 +18,8 @@ class AnasayfaViewModel @Inject constructor(var yemekrepo:YemeklerDaRepository):
     fun yemekAra(arananYemek:String){
         yemekrepo.yemekAra(arananYemek)
     }
-    fun yemekSil(yemekId: Int,yemekAd: String,yemekTanim: String){
-        yemekrepo.yemekSil(yemekId, yemekAd = yemekAd,yemekTanim)
+    fun yemekSil(yemekId: Int,yemekAd: String){
+        yemekrepo.yemekSil(yemekId, yemekAd = yemekAd)
     }
     fun tumYemek(){
         yemekrepo.tumYemek()

@@ -46,7 +46,7 @@ class YemeklerAdapter(var mContext: Context,
                 alert.setPositiveButton("Yes") {dialog, which ->
 
                     //OnClick Listener
-                    viewModel.yemekSil(yemek.id,yemek.name,yemek.description)
+                    viewModel.yemekSil(yemek.id,yemek.name)
                 }
                 alert.setNegativeButton("No") {dialog, which ->
 

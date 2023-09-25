@@ -2,7 +2,6 @@ package com.example.recipe_app.data.repo
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.recipe_app.data.entity.CRUDsonuc
 import com.example.recipe_app.data.entity.Yemek
 import com.example.recipe_app.data.entity.YemekCevap
 import com.example.recipe_app.retrofit.YemeklerDao
@@ -28,7 +27,7 @@ class YemeklerDaRepository(var yemekDao: YemeklerDao) {
     fun yemekAra(arananYemek:String){
        yemekDao.yemekAra(arananYemek).enqueue(object :Callback<YemekCevap>{
            override fun onResponse(call: Call<YemekCevap>, response: Response<YemekCevap>) {
-               val liste=response.body()!!.yemekler
+               val liste=response.body()!!.recipes
                if (liste!=null)
                     yemeklistesi.value=liste
            }
@@ -38,16 +37,16 @@ class YemeklerDaRepository(var yemekDao: YemeklerDao) {
 
        })
     }
-    fun yemekSil(yemekId: Int,yemekAd: String,yemekTanim: String){
-        Log.e("Sil","${yemekId} ${yemekAd} -${yemekTanim}")
+    fun yemekSil(yemekId: Int,yemekAd: String,){
+        Log.e("Sil","${yemekId} ${yemekAd} ")
 
     }
     fun tumYemek(){
         yemekDao.tumYemek().enqueue(object :Callback<YemekCevap>{
             override fun onResponse(call: Call<YemekCevap>?, response: Response<YemekCevap>) {
-                val liste= response.body()!!.yemekler
+                val liste=response.body()?.recipes
                     if (liste!=null)
-                        yemeklistesi.value=liste
+                        yemeklistesi.value=liste!!
 
             }
 
