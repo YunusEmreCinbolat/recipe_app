@@ -26,7 +26,17 @@ class YemeklerDaRepository(var yemekDao: YemeklerDao) {
         Log.e("guncel",yemekAd)
     }
     fun yemekAra(arananYemek:String){
-        Log.e("yemek ara",arananYemek)
+       yemekDao.yemekAra(arananYemek).enqueue(object :Callback<YemekCevap>{
+           override fun onResponse(call: Call<YemekCevap>, response: Response<YemekCevap>) {
+               val liste=response.body()!!.yemekler
+               if (liste!=null)
+                    yemeklistesi.value=liste
+           }
+
+           override fun onFailure(call: Call<YemekCevap>, t: Throwable) {
+           }
+
+       })
     }
     fun yemekSil(yemekId: Int,yemekAd: String,yemekTanim: String){
         Log.e("Sil","${yemekId} ${yemekAd} -${yemekTanim}")
@@ -36,8 +46,8 @@ class YemeklerDaRepository(var yemekDao: YemeklerDao) {
         yemekDao.tumYemek().enqueue(object :Callback<YemekCevap>{
             override fun onResponse(call: Call<YemekCevap>?, response: Response<YemekCevap>) {
                 val liste= response.body()!!.yemekler
-
-                    yemeklistesi.value=liste
+                    if (liste!=null)
+                        yemeklistesi.value=liste
 
             }
 
