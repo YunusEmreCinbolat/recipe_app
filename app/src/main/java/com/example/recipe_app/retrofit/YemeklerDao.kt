@@ -8,6 +8,7 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 import javax.inject.Singleton
 
 @Singleton
@@ -17,9 +18,8 @@ interface YemeklerDao {
     @GET("recipes/get_recipes.php")
     fun tumYemek():Call<YemekCevap>
 
-    @POST("recipes/search_recipe.php")
-    @FormUrlEncoded
-    fun yemekAra(@Field("name") name: String): Call<YemekCevap>
+    @GET("recipes/search_recipe.php")
+    fun yemekAra(@Query("query") query: String): Call<YemekCevap>
 
     @POST("recipes/add_recipe.php")
     @FormUrlEncoded

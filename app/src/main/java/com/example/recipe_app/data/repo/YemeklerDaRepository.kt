@@ -9,6 +9,7 @@ import com.example.recipe_app.retrofit.YemeklerDao
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.Query
 
 class YemeklerDaRepository(var yemekDao: YemeklerDao) {
 
@@ -28,6 +29,7 @@ class YemeklerDaRepository(var yemekDao: YemeklerDao) {
             }
 
             override fun onFailure(call: Call<CRUDsonuc>, t: Throwable) {
+                Log.e("EKLE1",t.message.toString())
             }
 
         })
@@ -45,8 +47,8 @@ class YemeklerDaRepository(var yemekDao: YemeklerDao) {
 
         })
     }
-    fun yemekAra(name:String){
-       yemekDao.yemekAra(name).enqueue(object :Callback<YemekCevap>{
+    fun yemekAra(query:String){
+       yemekDao.yemekAra(query).enqueue(object :Callback<YemekCevap>{
            override fun onResponse(call: Call<YemekCevap>?, response: Response<YemekCevap>) {
                val liste=response.body()?.recipes
                val message=response.body()?.message
