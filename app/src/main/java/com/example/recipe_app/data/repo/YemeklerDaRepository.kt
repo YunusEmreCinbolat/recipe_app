@@ -9,8 +9,9 @@ import com.example.recipe_app.retrofit.YemeklerDao
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class YemeklerDaRepository(var yemekDao: YemeklerDao) {
+class YemeklerDaRepository @Inject constructor(var yemekDao: YemeklerDao) {
 
     var yemeklistesi:MutableLiveData<List<Yemek>>
     init {
