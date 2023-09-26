@@ -3,6 +3,7 @@ package com.example.recipe_app.retrofit
 import com.example.recipe_app.data.entity.CRUDsonuc
 import com.example.recipe_app.data.entity.Yemek
 import com.example.recipe_app.data.entity.YemekCevap
+import com.example.recipe_app.data.entity.YemekDetayCevap
 import dagger.Provides
 import retrofit2.Call
 import retrofit2.http.Body
@@ -27,7 +28,7 @@ interface YemeklerDao {
     fun yemekEkle(@Body request:Yemek): Call<CRUDsonuc>
 
     @GET("recipes/get_recipe_detail.php")
-    fun yemekDetay(@Query("id") id: Int):Call<YemekCevap>
+    fun yemekDetay(@Query("id") id: Int):Call<YemekDetayCevap>
     @POST("recipes/update_recipe.php")
     @FormUrlEncoded
     fun yemekGuncelle(@Field("id") id:Int,@Field("name") name: String, @Field("description") description: String): Call<CRUDsonuc>

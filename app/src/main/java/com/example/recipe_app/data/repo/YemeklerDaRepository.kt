@@ -5,16 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import com.example.recipe_app.data.entity.CRUDsonuc
 import com.example.recipe_app.data.entity.Yemek
 import com.example.recipe_app.data.entity.YemekCevap
+import com.example.recipe_app.data.entity.YemekDetayCevap
 import com.example.recipe_app.retrofit.YemeklerDao
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.Query
 
 class YemeklerDaRepository(var yemekDao: YemeklerDao) {
 
     var yemeklistesi:MutableLiveData<List<Yemek>>
-    var yemekDetay:MutableLiveData<List<Yemek>>
+    var yemekDetay:MutableLiveData<Yemek>
     init {
         yemeklistesi= MutableLiveData()
         yemekDetay=MutableLiveData()
@@ -22,7 +22,7 @@ class YemeklerDaRepository(var yemekDao: YemeklerDao) {
     fun yemekGetir():MutableLiveData<List<Yemek>>{
         return yemeklistesi
     }
-    fun yemekDetayGetir():MutableLiveData<List<Yemek>>{
+    fun yemekDetayGetir():MutableLiveData<Yemek>{
         return yemekDetay
     }
     fun yemekKayit(request:Yemek){
@@ -74,22 +74,23 @@ class YemeklerDaRepository(var yemekDao: YemeklerDao) {
 
     }
     fun yemekDetay(id: Int){
-      yemekDao.yemekDetay(id).enqueue(object :Callback<YemekCevap>{
-          override fun onResponse(call: Call<YemekCevap>?, response: Response<YemekCevap>) {
-                val detay=response.body()?.recipes
-              Log.e("DETAY M",detay.toString())
-              if(detay!=null){
-                  yemekDetay.value=detay!!
-                  Log.e("detay",detay.toString())
-              }
-              Log.e("detay iddddd",response.body()?.message.toString())
-          }
+        yemekDao.yemekDetay(id).enqueue(object :Callback<YemekDetayCevap>{
+            override fun onResponse(
+                call: Call<YemekDetayCevap>,
+                response: Response<YemekDetayCevap>
+            ) {
+                val detay = response.body()?.recipe
+                if (detay != null) {
+                    yemekDetay.value = detay!!
 
-          override fun onFailure(call: Call<YemekCevap>, t: Throwable) {
-              TODO("Not yet implemented")
-          }
+                }
+            }
 
-      })
+            override fun onFailure(call: Call<YemekDetayCevap>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
     fun tumYemek(){
         yemekDao.tumYemek().enqueue(object :Callback<YemekCevap>{

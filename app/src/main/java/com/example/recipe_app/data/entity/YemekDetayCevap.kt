@@ -1,3 +1,6 @@
 package com.example.recipe_app.data.entity
 
-data class YemekDetayCevap()
+import com.google.gson.annotations.SerializedName
+
+data class YemekDetayCevap(@SerializedName("recipe") var recipe:Yemek, @SerializedName("status") var status:Int, @SerializedName("message") var message:String){}
+

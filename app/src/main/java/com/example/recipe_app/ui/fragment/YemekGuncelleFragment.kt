@@ -24,11 +24,17 @@ class YemekGuncelleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding= FragmentYemekGuncelleBinding.inflate(inflater,container,false)
-        binding.toolbarKayit.title="Yemek Kayıt Ekranı"
         val bundle:YemekGuncelleFragmentArgs by navArgs()
         val gelenYemek=bundle.yemekId
-        binding.editTextyemekAdi.setText(gelenYemek)
-        binding.editTextTextTarif.setText(gelenYemek)
+        viewModel.yemekDetay(gelenYemek)
+        viewModel.yemekDetay.observe(viewLifecycleOwner) { yemekDetayList ->
+
+            // Eğer birden fazla yemek detayı dönerse, uygun olanı seçin
+            binding.toolbarGuncelle.title = "${yemekDetayList.name} Güncelle"
+            binding.editTextyemekAdi.setText( yemekDetayList.name)
+            binding.editTextTextTarif.setText(yemekDetayList.description)
+        }
+
         binding.buttonYemekGuncelle.setOnClickListener {
             val yemekAd=binding.editTextyemekAdi.text.trim().toString()
             val yemekTarif=binding.editTextTextTarif.text.trim().toString()

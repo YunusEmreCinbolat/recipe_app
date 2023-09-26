@@ -7,7 +7,7 @@
     tools:context=".ui.fragment.YemekGuncelleFragment">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarKayit"
+        android:id="@+id/toolbarGuncelle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"

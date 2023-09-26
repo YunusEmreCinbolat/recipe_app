@@ -28,7 +28,7 @@ class YemekDetayFragment : Fragment() {
         viewModel.yemekDetay(gelenYemek)
         viewModel.yemekDetay.observe(viewLifecycleOwner) { yemekDetayList ->
 
-                val yemekDetayList = yemekDetayList[0] // Eğer birden fazla yemek detayı dönerse, uygun olanı seçin
+                // Eğer birden fazla yemek detayı dönerse, uygun olanı seçin
                 binding.toolbarDetay.title = "${yemekDetayList.name} Tarifi"
                 binding.textViewyemekAd.text = yemekDetayList.name
                 binding.textViewYemektanim.text = yemekDetayList.description
