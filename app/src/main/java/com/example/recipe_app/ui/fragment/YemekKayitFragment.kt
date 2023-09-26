@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.recipe_app.R
+import com.example.recipe_app.data.entity.Yemek
 import com.example.recipe_app.databinding.FragmentYemekKayitBinding
 import com.example.recipe_app.viewmodel.YemekGuncelleViewModel
 import com.example.recipe_app.viewmodel.YemekKayitViewModel
@@ -27,7 +28,8 @@ class YemekKayitFragment : Fragment() {
         binding.buttonYemekKaydet.setOnClickListener {
             val yemekAd=binding.editTextyemekAdi.text.trim().toString()
             val yemekTarif=binding.editTextTextTarif.text.trim().toString()
-            kayit(yemekAd,yemekTarif)
+            val yemek= Yemek(0,yemekAd,yemekTarif)
+            kayit(yemek)
         }
         return binding.root
     }
@@ -37,8 +39,8 @@ class YemekKayitFragment : Fragment() {
         val tempView:YemekKayitViewModel by viewModels ()
         viewModel=tempView
     }
-    fun kayit(yemekAd:String,yemekTanim:String){
-        viewModel.yemekKayit(yemekAd,yemekTanim)
+    fun kayit(request:Yemek){
+        viewModel.yemekKayit(request)
     }
 
 }

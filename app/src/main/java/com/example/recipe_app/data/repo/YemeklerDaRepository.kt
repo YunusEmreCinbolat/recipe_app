@@ -20,8 +20,8 @@ class YemeklerDaRepository(var yemekDao: YemeklerDao) {
     fun yemekGetir():MutableLiveData<List<Yemek>>{
         return yemeklistesi
     }
-    fun yemekKayit(Value:String, Description:String){
-        yemekDao.yemekEkle(Value,Description).enqueue(object :Callback<CRUDsonuc>{
+    fun yemekKayit(request:Yemek){
+        yemekDao.yemekEkle(request).enqueue(object :Callback<CRUDsonuc>{
             override fun onResponse(call: Call<CRUDsonuc>, response: Response<CRUDsonuc>) {
                 val message=response.body()?.message
                 Log.e("EKLE",message.toString())
