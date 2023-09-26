@@ -7,10 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import com.example.recipe_app.R
 import com.example.recipe_app.databinding.FragmentYemekDetayBinding
 import com.example.recipe_app.viewmodel.YemekDetayViewModel
-import com.example.recipe_app.viewmodel.YemekKayitViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,11 +22,18 @@ class YemekDetayFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding= FragmentYemekDetayBinding.inflate(inflater,container,false)
+
         val bundle:YemekDetayFragmentArgs by navArgs()
-        val gelenYemek=bundle.yemek
-        binding.toolbarDetay.title="${gelenYemek.name} Tarifi"
-        binding.textViewyemekAd.setText(gelenYemek.name)
-        binding.textViewYemektanim.setText(gelenYemek.description)
+        val gelenYemek=bundle.yemekId
+        viewModel.yemekDetay(gelenYemek)
+        viewModel.yemekDetay.observe(viewLifecycleOwner) { yemekDetayList ->
+
+                val yemekDetayList = yemekDetayList[0] // Eğer birden fazla yemek detayı dönerse, uygun olanı seçin
+                binding.toolbarDetay.title = "${yemekDetayList.name} Tarifi"
+                binding.textViewyemekAd.text = yemekDetayList.name
+                binding.textViewYemektanim.text = yemekDetayList.description
+            }
+
         return binding.root
     }
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -11,9 +11,12 @@ import javax.inject.Inject
 @HiltViewModel
 class AnasayfaViewModel @Inject constructor(var yemekrepo:YemeklerDaRepository):ViewModel() {
     var yemeklistesi=MutableLiveData<List<Yemek>>()
+    var yemekDetay= MutableLiveData<List<Yemek>>()
+
     init {
         tumYemek()
         yemeklistesi=yemekrepo.yemekGetir()
+        yemekDetay=yemekrepo.yemekDetayGetir()
     }
     fun yemekAra(arananYemek:String){
         yemekrepo.yemekAra(arananYemek)
@@ -24,5 +27,6 @@ class AnasayfaViewModel @Inject constructor(var yemekrepo:YemeklerDaRepository):
     fun tumYemek(){
         yemekrepo.tumYemek()
     }
+
 
 }

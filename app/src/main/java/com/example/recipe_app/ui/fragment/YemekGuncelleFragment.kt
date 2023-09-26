@@ -26,13 +26,13 @@ class YemekGuncelleFragment : Fragment() {
         binding= FragmentYemekGuncelleBinding.inflate(inflater,container,false)
         binding.toolbarKayit.title="Yemek Kayıt Ekranı"
         val bundle:YemekGuncelleFragmentArgs by navArgs()
-        val gelenYemek=bundle.yemek
-        binding.editTextyemekAdi.setText(gelenYemek.name)
-        binding.editTextTextTarif.setText(gelenYemek.description)
+        val gelenYemek=bundle.yemekId
+        binding.editTextyemekAdi.setText(gelenYemek)
+        binding.editTextTextTarif.setText(gelenYemek)
         binding.buttonYemekGuncelle.setOnClickListener {
             val yemekAd=binding.editTextyemekAdi.text.trim().toString()
             val yemekTarif=binding.editTextTextTarif.text.trim().toString()
-            guncelle(gelenYemek.id,yemekAd,yemekTarif)
+            guncelle(gelenYemek,yemekAd,yemekTarif)
         }
         return binding.root
     }

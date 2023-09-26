@@ -1,6 +1,8 @@
 package com.example.recipe_app.ui.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.recipe_app.data.entity.Yemek
 import com.example.recipe_app.databinding.CardTasarimBinding
 import com.example.recipe_app.ui.fragment.AnasayfaFragmentDirections
+import com.example.recipe_app.ui.fragment.YemekDetayFragment
 import com.example.recipe_app.util.gecisYap
 import com.example.recipe_app.viewmodel.AnasayfaViewModel
 
@@ -62,11 +65,13 @@ class YemeklerAdapter(var mContext: Context,
 
         })
         holder.binding.cv.setOnClickListener {
-           val gecis = AnasayfaFragmentDirections.yemekdetayGecis(yemek)
+
+            Log.e("adapter iddddd",yemek.id.toString())
+           val gecis = AnasayfaFragmentDirections.yemekdetayGecis(yemek.id)
             Navigation.gecisYap(gecis,it)
         }
         holder.binding.imageViewGuncelle.setOnClickListener {
-            val gecis = AnasayfaFragmentDirections.yemekguncelleGecis(yemek)
+            val gecis = AnasayfaFragmentDirections.yemekguncelleGecis(yemek.id)
            Navigation.gecisYap(gecis,it)
         }
 

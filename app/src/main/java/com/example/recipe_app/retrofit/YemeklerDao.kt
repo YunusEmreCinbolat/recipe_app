@@ -26,6 +26,8 @@ interface YemeklerDao {
     @POST("recipes/add_recipe.php")
     fun yemekEkle(@Body request:Yemek): Call<CRUDsonuc>
 
+    @GET("recipes/get_recipe_detail.php")
+    fun yemekDetay(@Query("id") id: Int):Call<YemekCevap>
     @POST("recipes/update_recipe.php")
     @FormUrlEncoded
     fun yemekGuncelle(@Field("id") id:Int,@Field("name") name: String, @Field("description") description: String): Call<CRUDsonuc>

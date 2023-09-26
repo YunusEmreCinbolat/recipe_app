@@ -1,10 +1,23 @@
 package com.example.recipe_app.viewmodel
 
+import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.recipe_app.data.entity.Yemek
 import com.example.recipe_app.data.repo.YemeklerDaRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class YemekDetayViewModel @Inject constructor(): ViewModel() {
+class YemekDetayViewModel @Inject constructor(val yemekrepo:YemeklerDaRepository): ViewModel() {
+    var yemekDetay= MutableLiveData<List<Yemek>>()
+
+    init {
+
+        yemekDetay=yemekrepo.yemekDetayGetir()
+    }
+    fun yemekDetay(id:Int){
+        yemekrepo.yemekDetay(id)
+        Log.e("aviewmodel idddddd",id.toString())
+    }
 }

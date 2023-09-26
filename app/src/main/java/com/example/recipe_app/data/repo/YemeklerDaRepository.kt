@@ -14,11 +14,16 @@ import retrofit2.http.Query
 class YemeklerDaRepository(var yemekDao: YemeklerDao) {
 
     var yemeklistesi:MutableLiveData<List<Yemek>>
+    var yemekDetay:MutableLiveData<List<Yemek>>
     init {
         yemeklistesi= MutableLiveData()
+        yemekDetay=MutableLiveData()
     }
     fun yemekGetir():MutableLiveData<List<Yemek>>{
         return yemeklistesi
+    }
+    fun yemekDetayGetir():MutableLiveData<List<Yemek>>{
+        return yemekDetay
     }
     fun yemekKayit(request:Yemek){
         yemekDao.yemekEkle(request).enqueue(object :Callback<CRUDsonuc>{
@@ -67,6 +72,24 @@ class YemeklerDaRepository(var yemekDao: YemeklerDao) {
     fun yemekSil(yemekId: Int,yemekAd: String,){
         Log.e("Sil","${yemekId} ${yemekAd} ")
 
+    }
+    fun yemekDetay(id: Int){
+      yemekDao.yemekDetay(id).enqueue(object :Callback<YemekCevap>{
+          override fun onResponse(call: Call<YemekCevap>?, response: Response<YemekCevap>) {
+                val detay=response.body()?.recipes
+              Log.e("DETAY M",detay.toString())
+              if(detay!=null){
+                  yemekDetay.value=detay!!
+                  Log.e("detay",detay.toString())
+              }
+              Log.e("detay iddddd",response.body()?.message.toString())
+          }
+
+          override fun onFailure(call: Call<YemekCevap>, t: Throwable) {
+              TODO("Not yet implemented")
+          }
+
+      })
     }
     fun tumYemek(){
         yemekDao.tumYemek().enqueue(object :Callback<YemekCevap>{
