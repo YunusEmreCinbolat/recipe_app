@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.recipe_app.R
+import com.example.recipe_app.data.entity.Yemek
 import com.example.recipe_app.databinding.FragmentYemekGuncelleBinding
 import com.example.recipe_app.viewmodel.YemekGuncelleViewModel
 import com.example.recipe_app.viewmodel.YemekKayitViewModel
@@ -38,7 +39,8 @@ class YemekGuncelleFragment : Fragment() {
         binding.buttonYemekGuncelle.setOnClickListener {
             val yemekAd=binding.editTextyemekAdi.text.trim().toString()
             val yemekTarif=binding.editTextTextTarif.text.trim().toString()
-            guncelle(gelenYemek,yemekAd,yemekTarif)
+            val yemek=Yemek(gelenYemek,yemekAd,yemekTarif)
+            guncelle(yemek)
         }
         return binding.root
     }
@@ -47,8 +49,8 @@ class YemekGuncelleFragment : Fragment() {
         val tempView: YemekGuncelleViewModel by viewModels ()
         viewModel=tempView
     }
-    fun guncelle(yemekId:Int, yemekAd:String,yemekTanim:String){
-        viewModel.yemekGuncelle(yemekId,yemekAd,yemekTanim)
+    fun guncelle(request:Yemek){
+        viewModel.yemekGuncelle(request)
     }
 
 }

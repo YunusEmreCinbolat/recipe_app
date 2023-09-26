@@ -39,8 +39,8 @@ class YemeklerDaRepository(var yemekDao: YemeklerDao) {
 
         })
     }
-    fun yemekGuncelle(id:Int, name:String, description:String){
-        yemekDao.yemekGuncelle(id,name,description).enqueue(object :Callback<CRUDsonuc>{
+    fun yemekGuncelle(request: Yemek){
+        yemekDao.yemekGuncelle(request).enqueue(object :Callback<CRUDsonuc>{
             override fun onResponse(call: Call<CRUDsonuc>, response: Response<CRUDsonuc>) {
                 val message=response.body()?.message
                 Log.e("Guncelle",message.toString())

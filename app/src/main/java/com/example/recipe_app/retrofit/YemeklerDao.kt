@@ -33,4 +33,7 @@ interface YemeklerDao {
     @FormUrlEncoded
     fun yemekGuncelle(@Field("id") id:Int,@Field("name") name: String, @Field("description") description: String): Call<CRUDsonuc>
 
+    @POST("recipes/update_recipe.php")
+    fun yemekGuncelle(@Body request:Yemek): Call<CRUDsonuc>
+
 }
