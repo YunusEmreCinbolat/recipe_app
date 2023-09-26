@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import com.example.recipe_app.R
 import com.example.recipe_app.data.entity.Yemek
@@ -26,10 +28,45 @@ class YemekKayitFragment : Fragment() {
         binding= FragmentYemekKayitBinding.inflate(inflater,container,false)
         binding.toolbarKayit.title="Yemek kayıt ekranı"
         binding.buttonYemekKaydet.setOnClickListener {
+
+
+            val alert = AlertDialog.Builder(requireContext())
+            alert.setTitle("Ekleme")
             val yemekAd=binding.editTextyemekAdi.text.trim().toString()
             val yemekTarif=binding.editTextTextTarif.text.trim().toString()
-            val yemek= Yemek(0,yemekAd,yemekTarif)
-            kayit(yemek)
+            if(!yemekAd.equals("") && !yemekTarif.equals("") ) {
+                alert.setMessage("${yemekAd.uppercase()} eklensin mi ?")
+
+                alert.setPositiveButton("EVET") { dialog, which ->
+                    val yemek = Yemek(0, yemekAd, yemekTarif)
+                    kayit(yemek)
+                    Toast.makeText(
+                        requireContext(),
+                        "${yemekAd.uppercase()} Eklendi",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    //OnClick Listener
+
+                }
+                alert.setNegativeButton("HAYIR") { dialog, which ->
+
+                    //OnClick Listener
+                    Toast.makeText(
+                        requireContext(),
+                        "${yemekAd.uppercase()} Eklenmedi",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                }
+
+                alert.show()
+            }
+            else {
+               Toast.makeText(requireContext(),"Alanlar Boş Geçilemez",Toast.LENGTH_LONG).show()
+            }
+
+
+
         }
         return binding.root
     }

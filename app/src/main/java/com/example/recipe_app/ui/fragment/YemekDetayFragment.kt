@@ -32,6 +32,7 @@ class YemekDetayFragment : Fragment() {
                 binding.toolbarDetay.title = "${yemekDetayList.name} Tarifi"
                 binding.textViewyemekAd.text = yemekDetayList.name
                 binding.textViewYemektanim.text = yemekDetayList.description
+                binding.textViewsayfaNo.text=gelenYemek.toString()
             }
 
         return binding.root

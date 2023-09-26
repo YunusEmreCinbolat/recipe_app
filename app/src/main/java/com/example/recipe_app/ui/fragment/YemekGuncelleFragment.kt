@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.recipe_app.R
@@ -37,10 +39,43 @@ class YemekGuncelleFragment : Fragment() {
         }
 
         binding.buttonYemekGuncelle.setOnClickListener {
+            val alert = AlertDialog.Builder(requireContext())
+            alert.setTitle("Güncelleme")
             val yemekAd=binding.editTextyemekAdi.text.trim().toString()
             val yemekTarif=binding.editTextTextTarif.text.trim().toString()
-            val yemek=Yemek(gelenYemek,yemekAd,yemekTarif)
-            guncelle(yemek)
+            if(!yemekAd.equals("") && !yemekTarif.equals("") ) {
+                alert.setMessage("${yemekAd.uppercase()} Güncellensin mi ?")
+
+                alert.setPositiveButton("EVET") { dialog, which ->
+                    val yemek=Yemek(gelenYemek,yemekAd,yemekTarif)
+                    guncelle(yemek)
+                    Toast.makeText(
+                        requireContext(),
+                        "${yemekAd.uppercase()} Güncellendi",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    //OnClick Listener
+
+                }
+                alert.setNegativeButton("HAYIR") { dialog, which ->
+
+                    //OnClick Listener
+                    Toast.makeText(
+                        requireContext(),
+                        "${yemekAd.uppercase()} Güncellenmedi",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                }
+
+                alert.show()
+            }
+            else {
+                Toast.makeText(requireContext(),"Alanlar Boş Geçilemez", Toast.LENGTH_LONG).show()
+            }
+
+
+
         }
         return binding.root
     }
