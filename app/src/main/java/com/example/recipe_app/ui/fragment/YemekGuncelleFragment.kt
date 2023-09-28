@@ -27,65 +27,64 @@ class YemekGuncelleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding= FragmentYemekGuncelleBinding.inflate(inflater,container,false)
+
         val bundle:YemekGuncelleFragmentArgs by navArgs()
         val gelenYemek=bundle.yemekId
-        viewModel.yemekDetay(gelenYemek)
-        viewModel.yemekDetay.observe(viewLifecycleOwner) { yemekDetayList ->
 
-            // Eğer birden fazla yemek detayı dönerse, uygun olanı seçin
-            binding.toolbarGuncelle.title = "${yemekDetayList.name} Güncelle"
-            binding.editTextyemekAdi.setText( yemekDetayList.name)
-            binding.editTextTextTarif.setText(yemekDetayList.description)
+        viewModel.yemekDetay(gelenYemek)
+
+        viewModel.yemekDetay.observe(viewLifecycleOwner) { yemekDetayList ->
+            binding.apply {
+                toolbarGuncelle.title = "${yemekDetayList.name} Güncelle"
+                editTextyemekAdi.setText( yemekDetayList.name)
+                editTextTextTarif.setText(yemekDetayList.description)
+            }
         }
 
         binding.buttonYemekGuncelle.setOnClickListener {
             val alert = AlertDialog.Builder(requireContext())
             alert.setTitle("Güncelleme")
+
             val yemekAd=binding.editTextyemekAdi.text.trim().toString()
             val yemekTarif=binding.editTextTextTarif.text.trim().toString()
+
             if(!yemekAd.equals("") && !yemekTarif.equals("") ) {
                 alert.setMessage("${yemekAd.uppercase()} Güncellensin mi ?")
 
                 alert.setPositiveButton("EVET") { dialog, which ->
+
                     val yemek=Yemek(gelenYemek,yemekAd,yemekTarif)
                     guncelle(yemek)
+
                     Toast.makeText(
                         requireContext(),
                         "${yemekAd.uppercase()} Güncellendi",
                         Toast.LENGTH_LONG
                     ).show()
-                    //OnClick Listener
-
                 }
                 alert.setNegativeButton("HAYIR") { dialog, which ->
-
-                    //OnClick Listener
                     Toast.makeText(
                         requireContext(),
                         "${yemekAd.uppercase()} Güncellenmedi",
                         Toast.LENGTH_LONG
                     ).show()
-
                 }
-
                 alert.show()
-            }
-            else {
+            } else {
                 Toast.makeText(requireContext(),"Alanlar Boş Geçilemez", Toast.LENGTH_LONG).show()
             }
-
-
-
         }
+
         return binding.root
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val tempView: YemekGuncelleViewModel by viewModels ()
         viewModel=tempView
     }
+
     fun guncelle(request:Yemek){
         viewModel.yemekGuncelle(request)
     }
-
 }

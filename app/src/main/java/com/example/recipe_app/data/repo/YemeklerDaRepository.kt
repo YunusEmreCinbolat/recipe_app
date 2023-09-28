@@ -32,11 +32,9 @@ class YemeklerDaRepository(var yemekDao: YemeklerDao) {
                 Log.e("EKLE",message.toString())
                 tumYemek()
             }
-
             override fun onFailure(call: Call<CRUDsonuc>, t: Throwable) {
                 Log.e("EKLE1",t.message.toString())
             }
-
         })
     }
     fun yemekGuncelle(request: Yemek){
@@ -45,11 +43,9 @@ class YemeklerDaRepository(var yemekDao: YemeklerDao) {
                 val message=response.body()?.message
                 Log.e("Guncelle",message.toString())
             }
-
             override fun onFailure(call: Call<CRUDsonuc>, t: Throwable) {
                 TODO("Not yet implemented")
             }
-
         })
     }
     fun yemekAra(query:String){
@@ -61,17 +57,13 @@ class YemeklerDaRepository(var yemekDao: YemeklerDao) {
                if (liste!=null)
                   yemeklistesi.value=liste!!
            }
-
            override fun onFailure(call: Call<YemekCevap>, t: Throwable) {
                TODO("Not yet implemented")
            }
-
-
        })
     }
     fun yemekSil(yemekId: Int,yemekAd: String,){
         Log.e("Sil","${yemekId} ${yemekAd} ")
-
     }
     fun yemekDetay(id: Int){
         yemekDao.yemekDetay(id).enqueue(object :Callback<YemekDetayCevap>{
@@ -82,14 +74,11 @@ class YemeklerDaRepository(var yemekDao: YemeklerDao) {
                 val detay = response.body()?.recipe
                 if (detay != null) {
                     yemekDetay.value = detay!!
-
                 }
             }
-
             override fun onFailure(call: Call<YemekDetayCevap>, t: Throwable) {
                 TODO("Not yet implemented")
             }
-
         })
     }
     fun tumYemek(){
@@ -98,13 +87,10 @@ class YemeklerDaRepository(var yemekDao: YemeklerDao) {
                 val liste=response.body()?.recipes
                     if (liste!=null)
                         yemeklistesi.value=liste!!
-
             }
-
             override fun onFailure(call: Call<YemekCevap>, t: Throwable) {
                 Log.e("YemeklerDaRepository", "İstek başarısız. Hata: ${t.message}")
             }
-
         })
     }
 }

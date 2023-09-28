@@ -25,7 +25,6 @@ import com.example.recipe_app.viewmodel.YemekKayitViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-
 class AnasayfaFragment : Fragment(),SearchView.OnQueryTextListener {
     private lateinit var binding: FragmentAnasayfaBinding
     private lateinit var viewModel: AnasayfaViewModel
@@ -35,9 +34,12 @@ class AnasayfaFragment : Fragment(),SearchView.OnQueryTextListener {
         savedInstanceState: Bundle?
     ): View? {
         binding= FragmentAnasayfaBinding.inflate(inflater,container,false)
+
         binding.toolbarAnasayfa.title="Yemek Listesi"
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbarAnasayfa)
+
         binding.rv.layoutManager=LinearLayoutManager(requireContext())
+
         viewModel.yemeklistesi.observe(viewLifecycleOwner){
             val adapter= YemeklerAdapter(requireContext(),it,viewModel)
             binding.rv.adapter=adapter
@@ -47,6 +49,7 @@ class AnasayfaFragment : Fragment(),SearchView.OnQueryTextListener {
         binding.fabEkle.setOnClickListener{
             Navigation.gecisYap(R.id.yemekkayitGecis,it)
         }
+
         requireActivity().addMenuProvider(object :MenuProvider{
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.toolbar_menu,menu)
@@ -72,7 +75,6 @@ class AnasayfaFragment : Fragment(),SearchView.OnQueryTextListener {
         viewModel.yemekAra(newText.toString())
         return true
     }
-
 
     override fun onResume() {
         super.onResume()

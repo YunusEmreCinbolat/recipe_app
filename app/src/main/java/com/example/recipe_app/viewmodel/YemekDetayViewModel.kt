@@ -13,9 +13,9 @@ class YemekDetayViewModel @Inject constructor(val yemekrepo:YemeklerDaRepository
     var yemekDetay= MutableLiveData<Yemek>()
 
     init {
-
         yemekDetay=yemekrepo.yemekDetayGetir()
     }
+
     fun yemekDetay(id:Int){
         yemekrepo.yemekDetay(id)
         Log.e("aviewmodel idddddd",id.toString())

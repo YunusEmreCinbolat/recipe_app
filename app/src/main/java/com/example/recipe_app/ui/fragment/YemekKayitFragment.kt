@@ -26,48 +26,45 @@ class YemekKayitFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding= FragmentYemekKayitBinding.inflate(inflater,container,false)
-        binding.toolbarKayit.title="Yemek kayıt ekranı"
-        binding.buttonYemekKaydet.setOnClickListener {
 
+        binding.toolbarKayit.title="Yemek kayıt ekranı"
+
+        binding.buttonYemekKaydet.setOnClickListener {
 
             val alert = AlertDialog.Builder(requireContext())
             alert.setTitle("Ekleme")
+
             val yemekAd=binding.editTextyemekAdi.text.trim().toString()
             val yemekTarif=binding.editTextTextTarif.text.trim().toString()
+
             if(!yemekAd.equals("") && !yemekTarif.equals("") ) {
                 alert.setMessage("${yemekAd.uppercase()} eklensin mi ?")
 
                 alert.setPositiveButton("EVET") { dialog, which ->
+
                     val yemek = Yemek(0, yemekAd, yemekTarif)
                     kayit(yemek)
+
                     Toast.makeText(
                         requireContext(),
                         "${yemekAd.uppercase()} Eklendi",
                         Toast.LENGTH_LONG
                     ).show()
-                    //OnClick Listener
-
                 }
-                alert.setNegativeButton("HAYIR") { dialog, which ->
 
-                    //OnClick Listener
+                alert.setNegativeButton("HAYIR") { dialog, which ->
                     Toast.makeText(
                         requireContext(),
                         "${yemekAd.uppercase()} Eklenmedi",
                         Toast.LENGTH_LONG
                     ).show()
-
                 }
-
                 alert.show()
-            }
-            else {
+            } else {
                Toast.makeText(requireContext(),"Alanlar Boş Geçilemez",Toast.LENGTH_LONG).show()
             }
-
-
-
         }
+
         return binding.root
     }
 
@@ -76,8 +73,8 @@ class YemekKayitFragment : Fragment() {
         val tempView:YemekKayitViewModel by viewModels ()
         viewModel=tempView
     }
+
     fun kayit(request:Yemek){
         viewModel.yemekKayit(request)
     }
-
 }

@@ -14,13 +14,14 @@ class YemekGuncelleViewModel @Inject constructor(val yemekrepo:YemeklerDaReposit
     var yemekDetay= MutableLiveData<Yemek>()
 
     init {
-
         yemekDetay=yemekrepo.yemekDetayGetir()
     }
+
     fun yemekDetay(id:Int){
         yemekrepo.yemekDetay(id)
         Log.e("aviewmodel idddddd",id.toString())
     }
+
     fun yemekGuncelle(request: Yemek){
         yemekrepo.yemekGuncelle(request)
     }

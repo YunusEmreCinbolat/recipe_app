@@ -19,8 +19,9 @@ import com.example.recipe_app.viewmodel.AnasayfaViewModel
 
 class YemeklerAdapter(var mContext: Context,
                       val yemekListesi: List<Yemek>,
-                    val viewModel: AnasayfaViewModel)
-    :RecyclerView.Adapter<YemeklerAdapter.CardTasarimTutucu>() {
+                      val viewModel: AnasayfaViewModel)
+                      :RecyclerView.Adapter<YemeklerAdapter.CardTasarimTutucu>() {
+
     inner class CardTasarimTutucu(binding: CardTasarimBinding):RecyclerView.ViewHolder(binding.root){
         var binding:CardTasarimBinding
         init {
@@ -45,35 +46,27 @@ class YemeklerAdapter(var mContext: Context,
                 val alert = AlertDialog.Builder(mContext)
                 alert.setTitle("Silme")
                 alert.setMessage("${yemek.name} silinsin mi ?")
-
                 alert.setPositiveButton("Yes") {dialog, which ->
-
-                    //OnClick Listener
                     viewModel.yemekSil(yemek.id,yemek.name)
                 }
                 alert.setNegativeButton("No") {dialog, which ->
-
-                    //OnClick Listener
                     Toast.makeText(mContext,"${yemek.name} Silinmedi",Toast.LENGTH_LONG).show()
-
                 }
-
                 alert.show()
-
                 return true
             }
 
         })
-        holder.binding.cv.setOnClickListener {
 
+        holder.binding.cv.setOnClickListener {
             Log.e("adapter iddddd",yemek.id.toString())
-           val gecis = AnasayfaFragmentDirections.yemekdetayGecis(yemek.id)
+            val gecis = AnasayfaFragmentDirections.yemekdetayGecis(yemek.id)
             Navigation.gecisYap(gecis,it)
         }
+
         holder.binding.imageViewGuncelle.setOnClickListener {
             val gecis = AnasayfaFragmentDirections.yemekguncelleGecis(yemek.id)
            Navigation.gecisYap(gecis,it)
         }
-
     }
 }

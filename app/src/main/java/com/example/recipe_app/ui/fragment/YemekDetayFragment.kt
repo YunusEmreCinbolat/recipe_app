@@ -12,7 +12,6 @@ import com.example.recipe_app.viewmodel.YemekDetayViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-
 class YemekDetayFragment : Fragment() {
     private lateinit var binding: FragmentYemekDetayBinding
     private lateinit var viewModel: YemekDetayViewModel
@@ -25,18 +24,21 @@ class YemekDetayFragment : Fragment() {
 
         val bundle:YemekDetayFragmentArgs by navArgs()
         val gelenYemek=bundle.yemekId
-        viewModel.yemekDetay(gelenYemek)
-        viewModel.yemekDetay.observe(viewLifecycleOwner) { yemekDetayList ->
 
-                // Eğer birden fazla yemek detayı dönerse, uygun olanı seçin
-                binding.toolbarDetay.title = "${yemekDetayList.name} Tarifi"
-                binding.textViewyemekAd.text = yemekDetayList.name
-                binding.textViewYemektanim.text = yemekDetayList.description
-                binding.textViewsayfaNo.text=gelenYemek.toString()
+        viewModel.yemekDetay(gelenYemek)
+
+        viewModel.yemekDetay.observe(viewLifecycleOwner) { yemekDetayList ->
+            binding.apply {
+                toolbarDetay.title = "${yemekDetayList.name} Tarifi"
+                textViewyemekAd.text = yemekDetayList.name
+                textViewYemektanim.text = yemekDetayList.description
+                textViewsayfaNo.text=gelenYemek.toString()
             }
+        }
 
         return binding.root
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val tempView: YemekDetayViewModel by viewModels ()
