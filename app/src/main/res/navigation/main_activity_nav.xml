@@ -26,8 +26,8 @@
         android:label="fragment_yemek_detay"
         tools:layout="@layout/fragment_yemek_detay" >
         <argument
-            android:name="yemek"
-            app:argType="com.example.recipe_app.data.entity.Yemek" />
+            android:name="yemekId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/yemekGuncelleFragment"
@@ -35,8 +35,8 @@
         android:label="fragment_yemek_guncelle"
         tools:layout="@layout/fragment_yemek_guncelle" >
         <argument
-            android:name="yemek"
-            app:argType="com.example.recipe_app.data.entity.Yemek" />
+            android:name="yemekId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/yemekKayitFragment"

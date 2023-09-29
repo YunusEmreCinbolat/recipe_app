@@ -1,6 +1,8 @@
 package com.example.recipe_app.ui.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +13,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.recipe_app.data.entity.Yemek
 import com.example.recipe_app.databinding.CardTasarimBinding
 import com.example.recipe_app.ui.fragment.AnasayfaFragmentDirections
+import com.example.recipe_app.ui.fragment.YemekDetayFragment
 import com.example.recipe_app.util.gecisYap
 import com.example.recipe_app.viewmodel.AnasayfaViewModel
 
 class YemeklerAdapter(var mContext: Context,
                       val yemekListesi: List<Yemek>,
-                    val viewModel: AnasayfaViewModel)
-    :RecyclerView.Adapter<YemeklerAdapter.CardTasarimTutucu>() {
+                      val viewModel: AnasayfaViewModel)
+                      :RecyclerView.Adapter<YemeklerAdapter.CardTasarimTutucu>() {
+
     inner class CardTasarimTutucu(binding: CardTasarimBinding):RecyclerView.ViewHolder(binding.root){
         var binding:CardTasarimBinding
         init {
@@ -42,33 +46,27 @@ class YemeklerAdapter(var mContext: Context,
                 val alert = AlertDialog.Builder(mContext)
                 alert.setTitle("Silme")
                 alert.setMessage("${yemek.name} silinsin mi ?")
-
                 alert.setPositiveButton("Yes") {dialog, which ->
-
-                    //OnClick Listener
-                    viewModel.yemekSil(yemek.id,yemek.name,yemek.description)
+                    viewModel.yemekSil(yemek.id,yemek.name)
                 }
                 alert.setNegativeButton("No") {dialog, which ->
-
-                    //OnClick Listener
                     Toast.makeText(mContext,"${yemek.name} Silinmedi",Toast.LENGTH_LONG).show()
-
                 }
-
                 alert.show()
-
                 return true
             }
 
         })
+
         holder.binding.cv.setOnClickListener {
-           val gecis = AnasayfaFragmentDirections.yemekdetayGecis(yemek)
+            Log.e("adapter iddddd",yemek.id.toString())
+            val gecis = AnasayfaFragmentDirections.yemekdetayGecis(yemek.id)
             Navigation.gecisYap(gecis,it)
         }
+
         holder.binding.imageViewGuncelle.setOnClickListener {
-            val gecis = AnasayfaFragmentDirections.yemekguncelleGecis(yemek)
+            val gecis = AnasayfaFragmentDirections.yemekguncelleGecis(yemek.id)
            Navigation.gecisYap(gecis,it)
         }
-
     }
 }
