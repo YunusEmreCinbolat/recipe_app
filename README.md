@@ -26,12 +26,12 @@ The technologies I used in this application are as below
   <li>This makes our code more readable and easier to maintain, speeding up the application development process. </li>
 </ul>
 
-<h1>Navigation Component</h1
+<h1>4-Navigation Component</h1
 <ul>
   <li>It simplifies navigation management in Android applications and makes it easier to switch between different screens of the application. </li>
 </ul>
 
-<h1>ViewBinding</h1>
+<h1>5-ViewBinding</h1>
 <ul>
   <li>It allows you to access views in XML files more safely and effectively, thus reducing the possibility of making mistakes and making our code more readable. </li>
 </ul>
